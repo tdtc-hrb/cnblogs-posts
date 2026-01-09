@@ -1,6 +1,6 @@
 ---
 title: "Windows搭建PHP环境"
-date: 2025-08-04T00:12:08+08:00
+date: 2026-01-04T00:12:08+08:00
 ---
 - [Apache Lounge Downloads](https://www.apachelounge.com/download/)
 - [windows openssl](https://slproweb.com/products/Win32OpenSSL.html)
@@ -23,8 +23,8 @@ Non Thread Safe(NTS) 和 Thread Safe(TS)： "NTS"，没有"php(5/7/8)apache2_4.d
 
 - PHP 8
 ```bash
-PHPIniDir "C:/php-8.3"
-LoadModule php_module "C:/php-8.3/php8apache2_4.dll"
+PHPIniDir "C:/php-8.4"
+LoadModule php_module "C:/php-8.4/php8apache2_4.dll"
 ```
 - Php 5
 ```
@@ -125,7 +125,7 @@ $cfg['blowfish_secret'] = 'qtdRoGmbc9{8IZr323xYcSN]0s)r$9b_JUnb{~Xz';
 ## Php.ini
 - extension设置目录
 ```bash
-extension_dir = "C:/php-8.3/ext"
+extension_dir = "C:/php-8.4/ext"
 ```
 - memory limit:
 ```
