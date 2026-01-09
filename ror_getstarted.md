@@ -1,10 +1,10 @@
 +++
 title = '开始Ruby On Rails'
-date = 2024-09-30T08:08:08+08:00
+date = 2026-01-10T08:08:08+08:00
 +++
 
 # Prepare
-- [nodejs](https://tdtc-hrb.github.io/csdn/post/nodejs-ubuntu/)
+- [nodejs](https://tdtc-hrb.github.io/csdn/post/nodejs-debian/)
 
 - foreman
 ```
@@ -45,6 +45,11 @@ install:
 sudo chmod +x yarn_1.22.22_all.deb
 sudo dpkg -i yarn_1.22.22_all.deb
 ```
+### set proxy
+```
+sudo yarn config set proxy http://<ip:port>
+sudo yarn config set https-proxy http://<ip:port>
+```
 
 
 # Creating a New Rails Project
@@ -52,7 +57,6 @@ new:
 ```bash
 rails new veic_web-r2 -j esbuild --css bulma -d mysql
 ```
-
 
 ## upload images
 windows 10:
@@ -69,7 +73,7 @@ tar zxvf img.tar.gz
 
 ## config db
 ```
-vi ./config/database.yml
+nano ./config/database.yml
 ```
 remote user:
 ```
@@ -107,17 +111,20 @@ rails generate model Product parameter:references image:references --skip-migrat
 ```
 
 ### 3NF
-
+Add "has_many :products" to the class
 - Parameter    
-add "./app/models/parameter.rb":
+"./app/models/parameter.rb":
 ```
-has_many :products
+class Parameter < ApplicationRecord
+  has_many :products
+end
 ```
-
 - Image    
-add "./app/models/image.rb":
+"./app/models/image.rb":
 ```
-has_many :products
+class Image < ApplicationRecord
+  has_many :products
+end
 ```
 
 ## Showing product data
@@ -244,14 +251,20 @@ If the port is defined in /bin/dev, then:
 web: env RUBY_DEBUG_OPEN=true bin/rails server -b 0.0.0.0
 ```
 
-### allow port
+### allow port - ubuntu
 ```
 $ sudo ufw allow 3000
 ```
+
+### app update - only bin
 If it is a clone project, you need to execute:
 ```
-$ bundle exec rake app:update:bin
+$ bin/rails app:update:bin
 ```
+
+> Rails 5から、railsのみで対応できるようになりました（rakeが不要になりました）。
+> Rails 4以前は、コマンドによって、rakeを使うものと、railsを使うものが区別されています。
+from [先に結論から言うと、Rails 5以降では、railsコマンドのみを使えば問題ありません。](https://prograshi.com/framework/rails/difference-rake-rails-bin-bundle_exec/)
 
 ### Permission denied
 - Error message
@@ -274,7 +287,7 @@ sass: not found
 Need to rebuild:
 ```bash
 rm -rf ./node_modules
-npm install
+yarn install
 ```
 
 ### web access addr
