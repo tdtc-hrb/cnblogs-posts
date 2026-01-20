@@ -1,9 +1,9 @@
 ---
 title: "Windows搭建PHP环境"
-date: 2026-01-04T00:12:08+08:00
+date: 2026-01-20T00:12:08+08:00
 ---
 - [Apache Lounge Downloads](https://www.apachelounge.com/download/)
-- [windows openssl](https://slproweb.com/products/Win32OpenSSL.html)
+- [openssl - wsl1](https://tdtc-hrb.github.io/csdn/post/dev_wsl_ubuntu)
 
 # Apache配置
 - ServerRoot
@@ -42,7 +42,7 @@ httpd -t
 ```
 
 ### Directory Index
-sets the file that Apache will serve if a directory is requested.
+DirectoryIndex: sets the file that Apache will serve if a directory is requested.
 - append
 ```
 index.php
@@ -81,17 +81,17 @@ Did you restart the server after uncommenting the LoadModule line for mod_socach
 
 Replace
 ```
-SSLCertificateFile "${SRVROOT}/conf/server.crt"
-SSLCertificateKeyFile "${SRVROOT}/conf/server.key"
+SSLCertificateFile "/server.crt"
+SSLCertificateKeyFile "/server.key"
 ```
 with
 ```
-SSLCertificateFile "${SRVROOT}/conf/ssl/dev.crt"
-SSLCertificateKeyFile "${SRVROOT}/conf/ssl/dev.key"
+SSLCertificateFile "C:/Apache24/conf/ssl/dev.crt"
+SSLCertificateKeyFile "C:/Apache24/conf/ssl/dev.key"
 ```
 copy "dev.crt" and "dev.key" to directory:
 ```
-${SRVROOT}/conf/ssl
+C:/Apache24/conf/ssl
 ```
 
 
