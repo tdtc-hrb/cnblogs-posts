@@ -7,8 +7,8 @@ IDE: VS2022
 语言: C#    
 
 简介：
-  本示例使用SQLite的密码、外键功能。
-
+  本示例使用SQLite的外键功能。
+  <p style="text-decoration: line-through;">密码</p>
 # 一、工程设置
 ## 1. NuGet
 > Tools -> NuGet Package Manager -> Package Manager Console
