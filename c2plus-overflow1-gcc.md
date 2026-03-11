@@ -3,7 +3,7 @@ title: "signed warning"
 description: "comparison of integer expressions of different signedness"
 date: 2025-01-11T11:08:08+08:00
 ---
-For development environment settings, see: [pictures](https://blog.csdn.net/xiaobin_HLJ80/article/details/19500207#t0)
+For development environment settings, see: [Clang IDE的选择在Windows](https://www.cnblogs.com/xiaobin-hlj80/p/19190375)
 and [run application](https://tdtc-hrb.github.io/csdn/post/c-console_app)
 
 ## shellsort
@@ -17,27 +17,27 @@ template <typename Comparable>
 void shellsort(vector<Comparable> &a)
 {
     for(int gap = a.size() / 2; gap > 0; gap /= 2){
-    	for(int i = gap; i < a.size(); ++i)
-    	{
-    		Comparable tmp = move(a[i]);
-    		int j = i;
+        for(int i = gap; i < a.size(); ++i)
+        {
+            Comparable tmp = move(a[i]);
+            int j = i;
 
-    		for (; j >= gap && tmp < a[j - gap]; j -= gap)
-    		{
-    			a[j] = move(a[j - gap]);
-    		}
-    		a[j] = move(tmp);
-    	}
-    	cout<< "\n" << gap << endl;
-    	for (int n : a)
-    		cout << n << ' ';
+            for (; j >= gap && tmp < a[j - gap]; j -= gap)
+            {
+                a[j] = move(a[j - gap]);
+            }
+            a[j] = move(tmp);
+        }
+        cout<< "\n" << gap << endl;
+        for (int n : a)
+            cout << n << ' ';
     }
 }
 
 int main() {
     vector<int> a = { 81, 94, 11, 96, 12, 35, 17, 95, 28, 58, 41, 75, 15};
     shellsort(a);
-	return 0;
+    return 0;
 }
 ```
 
