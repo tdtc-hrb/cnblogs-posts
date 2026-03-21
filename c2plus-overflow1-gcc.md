@@ -3,8 +3,7 @@ title: "signed warning"
 description: "comparison of integer expressions of different signedness"
 date: 2025-01-11T11:08:08+08:00
 ---
-For development environment settings, see: [Clang IDE的选择在Windows](https://www.cnblogs.com/xiaobin-hlj80/p/19190375)
-and [run application](https://tdtc-hrb.github.io/csdn/post/c-console_app)
+- IDE: CDT + [Mingw 13.1.0](https://github.com/niXman/mingw-builds-binaries)
 
 ## shellsort
 ```c++
