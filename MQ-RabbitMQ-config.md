@@ -1,7 +1,7 @@
 ---
 title: "Install and Configure RabbitMQ"
 description: "Message Queue2篇：Kafka、RabbitMQ"
-date: 2022-05-15T18:08:08+08:00
+date: 2026-07-05T18:08:08+08:00
 ---
 
 - Ubuntu 18.04    
@@ -156,7 +156,10 @@ The following plugins have been enabled:
 started 3 plugins.
 ```
 
-access [15672 port](192.168.x.x:15672)
+access 
+```
+15672 port: 192.168.x.x:15672
+```
 ![rabbitMQ info](https://gitee.com/xiaobin80/cnblogs/raw/master/images/20200106025932697.png)
 
 

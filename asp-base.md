@@ -39,7 +39,7 @@ checked
 
 ## Repository
 > Project-》Manage NuGet Packages
-![Microsoft EF Core](https://github.com/tdtc-hrb/cnblogs/raw/main/images/20241011135217.png)
+![Microsoft.EntityFrameworkCore](https://github.com/tdtc-hrb/cnblogs/raw/main/images/20241011135217.png)
 
 ### entity class
 数据表的Entity类
@@ -114,7 +114,7 @@ public class EFProductRepository(ApplicationDbContext context) : IProductReposit
 
 ### connector
 > Project-》Manager NuGet Packages
-![MySql EF Core](https://github.com/tdtc-hrb/cnblogs/raw/main/images/20241011152840.png)
+![MySql.EntityFrameworkCore](https://github.com/tdtc-hrb/cnblogs/raw/main/images/20241011152840.png)
 #### connection string
 - appsettings.json
 ```xml

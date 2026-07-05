@@ -1,7 +1,7 @@
 ---
 title: "前端（Web）负载均衡"
 description: "本系列包括架设Real Server和Keepalived Server、Keepalive安装配置"
-date: 2022-10-06T08:38:08+08:00
+date: 2026-07-05T08:38:08+08:00
 ---
   Nginx's load balancing
 
@@ -40,7 +40,7 @@ $sudo firewall-cmd --reload
 
 
 ## installation
-First, install Nginx of centos [repo]((https://nginx.org/en/linux_packages.html#RHEL));    
+First, install Nginx of centos [repo](https://nginx.org/en/linux_packages.html#RHEL);    
 Then, replace the nginx program file.    
 Note: The replaced program file version must be the same as the repo!
 
