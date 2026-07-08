@@ -1,9 +1,7 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: "Enc28j60 外接模块"
 description: "Nano V3 Ethernet Shield - ENC28J60"
-date: 2026-07-07
-author: xiaobin
+date: 2026-07-07T01:08:08+08:00
 ---
 - [Nano V3 Ethernet Shield - ENC28J60](https://www.flyrobo.in/nano-v3-ethernet-shield)
 > Purchased on February 12, 2020.
