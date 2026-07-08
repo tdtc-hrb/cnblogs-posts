@@ -12,7 +12,14 @@ date: 2026-07-07T01:08:08+08:00
 - ICE: j-link v8.0
 
 ### test
-1. led & uart
+- 解压缩ASF
+- 使用IDE - "IAR Embedded Workbench", 打开工作区文件
+```
+for example:
+xdk-asf-3.33.0\sam\applications\getting-started\sam4sd32c_sam4s_ek2\iar\getting-started.eww
+```
+#### led & uart
+- getting-started.eww
 ```
 xdk-asf-3.33.0\sam\applications\getting-started\sam4sd32c_sam4s_ek2
 ```
@@ -21,7 +28,8 @@ xdk-asf-3.33.0\sam\applications\getting-started\sam4sd32c_sam4s_ek2
 ```
 Baud: 115200
 ```
-2. TFT LCD
+#### TFT LCD
+- ili93xx_example.eww
 ```
 xdk-asf-3.33.0\sam\components\display\ili93xx\example\sam4sd32c_sam4s_ek2
 ```
