@@ -1,14 +1,14 @@
 ---
 title: "PIC blinked"
 description: "pic16f887/pic16f877a & pic16f18877"
-date: 2023-05-18T08:08:08+08:00
+date: 2026-07-12T08:08:08+08:00
 ---
 With a few changes, code for 877A can be easily transferred to 887 (as for any PIC, datasheet reading is necessary).
 887 has internal oscillator, it is cheaper than 877A, ...
 
 - MPASM    
-[MPLAB X v5.30(x86) - 2019.10.29](https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-v5.30-windows-installer.exe)
-- Proteus [v8.15](https://www.jb51.net/softs/854769.html)
+[MPLAB X v5.35 - latest MPASM](https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-v5.35-windows-installer.exe)
+- Proteus [v8.16](https://www.jb51.net/softs/905053.html)
 
 # Blinking LED
 First, use the compiler to generate hex;    
