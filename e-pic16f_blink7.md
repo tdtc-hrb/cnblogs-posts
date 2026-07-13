@@ -1,28 +1,29 @@
 ---
 title: "PIC blinked"
 description: "pic16f887/pic16f877a & pic16f18877"
-date: 2026-07-12T08:08:08+08:00
+date: 2026-07-13T08:08:08+08:00
 ---
-With a few changes, code for 877A can be easily transferred to 887 (as for any PIC, datasheet reading is necessary).
-887 has internal oscillator, it is cheaper than 877A, ...
-
-- MPASM    
-[MPLAB X v5.35 - latest MPASM](https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-v5.35-windows-installer.exe)
-- Proteus [v8.16](https://www.jb51.net/softs/905053.html)
+- [MPLAB X v5.35 - latest MPASM](https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-v5.35-windows-installer.exe)
+- [Proteus v8.16](https://www.jb51.net/softs/905053.html)
 
 # Blinking LED
-First, use the compiler to generate hex;    
-Then, use protelus to draw "Schematic Capture";    
-Finally, import the hex file into the MCU component.
+- First, use the MPLAB X to generate hex;    
+- Then, use protelus to draw "Schematic Capture";
 
-## 16F887
-We are using Proteus simulator for simulating our code but if you are testing the code in real world test bench all you need is,
+![blink-16f877a](https://github.com/tdtc-hrb/cnblogs/raw/main/images/schematic_capture-887a.png)
 
-PIC16F887 or PIC16F877A    
-LED    
-330R Resistor    
-4Mhz Crystal    
-After wiring LED and crystal to the microcontroller and giving the proper supply connections, you are good to start.
+- Finally, import the hex file into the MCU component.
+```
+Right-click the "mcu" icon and select "Edit Properties".
+```
+![load hex](https://electrosome.com/wp-content/uploads/2012/05/Proteus-Edit-Component-PIC-16F877A.jpg)
+
+## [16F887](https://web.archive.org/web/20260120160017/https://www.fypsolutions.com/assembly-language/pic-microcontroller-led-blink-code-example-in-assembly-language)
+- PIC16F887 or PIC16F877A
+- LED
+- 470R Resistor
+- 8Mhz Crystal
+- Two 22pF capacitors in parallel
 
 ```asm
 LIST p=16F887			 ;tell assembler what chip we are using
@@ -39,7 +40,7 @@ ENDC
 
 MAIN:
     BANKSEL		TRISB
-    BCF 	    TRISB,0     
+    BCF 	    TRISB,0
     BANKSEL		PORTB
 MainLoop:
     BCF		    PORTB,0
@@ -58,9 +59,8 @@ DELAY3:
 
 END
 ```
-![load hex](https://electrosome.com/wp-content/uploads/2012/05/Proteus-Edit-Component-PIC-16F877A.jpg)
 
-## 16F18877
+## [16F18877 Example v550(mplabx)](https://github.com/dsoze1138/MPLABXv5xx_pic-as_examples/tree/master/16F18877_Example_v550.X)
 ```asm
     title "Blink V. 1.0"
     subtitle "The uC Equivalent of Hello world"
@@ -125,8 +125,3 @@ DELAY3:
 
     END
 ```
-
-# Ref
-- [PIC microcontroller LED Blink Code Example in Assembly Language](https://www.fypsolutions.com/assembly-language/pic-microcontroller-led-blink-code-example-in-assembly-language/)
-- [16F18877 Example v550(mplabx)](https://github.com/dsoze1138/MPLABXv5xx_pic-as_examples/tree/master/16F18877_Example_v550.X)
-- [Blink a LED With Assembly Language & a PIC](https://www.instructables.com/Blinking-a-LED-with-Assembly-Language/)
