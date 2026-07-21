@@ -105,3 +105,7 @@ View -> Command Palette:
 ```
 MPLAB mcc  : launch
 ```
+
+## Ref
+- [Getting Started With PWM Using CCP on PIC18](https://www.microchip.com/en-us/application-notes/tb3270)
+- [PIC1000: Getting Started with Writing C-Code for PIC16F and PIC18F](https://www.microchip.com/en-us/application-notes/tb3261)
