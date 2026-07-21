@@ -1,12 +1,17 @@
 ---
-title: "PIC的 Register Definitions: Configuration Words"
-description: "PIC18F26/27Q10"
-date: 2026-07-18T10:08:08+08:00
+title: "advanced 8-bit mcu 的 Register Definitions: Configuration Words"
+description: "q10 family"
+date: 2026-07-21T10:08:08+08:00
 ---
 Ver: 0.1
-```
-Modified from e-pic16f188_register-definitions.md
-```
+
+### [Pin Count vs. Memory - Q10](https://www.microchip.com/en-us/products/microcontrollers/8-bit-mcus/pic-mcus/pic18-q10)
+|Flash (KB)|28 Pins|40 pins}
+|-|-|-|
+|128|PIC18F27Q10|PIC18F47Q10|
+|64|PIC18F26Q10|PIC18F46Q10|
+|32|PIC18F25Q10|PIC18F45Q10|
+|16|PIC18F24Q10|-|
 
 ## 4.6 Register Summary - Configuration Words
 |Name| Address |Words|
