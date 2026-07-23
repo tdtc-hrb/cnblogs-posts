@@ -1,10 +1,10 @@
 ---
-title: "microchip code configurator"
+title: "microchip code configurator - melody"
 description: "Get Started for MPLAB® X IDE Users New to Visual Studio Code (VS Code®)"
 date: 2026-07-18T10:08:08+08:00
 ---
 - [MPLAB Extension Pack - VS Code](https://developerhelp.microchip.com/xwiki/bin/view/software-tools/ides/extensions/get-started/)
-- XC8: v4.0
+- [MCC Melody](https://www.microchip.com/en-us/tools-resources/configure/mplab-code-configurator/melody)
 
 ### network Settings
 ![](https://github.com/tdtc-hrb/cnblogs/raw/main/images/mcc_network-vs.png)
