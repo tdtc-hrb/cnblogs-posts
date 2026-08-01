@@ -19,18 +19,13 @@ ServerName localhost:80
 ```
 Non Thread Safe(NTS) 和 Thread Safe(TS)： "NTS"，没有"php(5/7/8)apache2_4.dll"
 ```
-> Php7.2+ 已移除 mcrypt.
 
 - PHP 8
 ```bash
 PHPIniDir "C:/php-8.4"
 LoadModule php_module "C:/php-8.4/php8apache2_4.dll"
 ```
-- Php 5
-```
-PHPIniDir "C:/php-5.6"
-LoadModule php5_module "C:/php-5.6/php5apache2_4.dll"
-```
+
 在配置文件(conf/httpd.conf)最后增加:
 ```
 AddType application/x-httpd-php .php
@@ -232,6 +227,22 @@ net start MySQL584
 echo Service List End... ...
 
 pause>nul
+```
+
+## [mcrypt](https://downloads.php.net/~windows/pecl/releases/mcrypt)
+> current version: 1.0.9
+
+- unpack and copy php_mcrypt.dll to `c:\php-8.4\ext`
+### config - php.ini
+```
+[mcrypt]
+extension=php_mcrypt.dll
+```
+#### [wamp](https://stackoverflow.com/a/60952096)
+Additional modification:
+```
+for example:
+C:\wamp64\bin\apache\apache2.4.65\bin\php.ini
 ```
 
 ## Apache Issues
