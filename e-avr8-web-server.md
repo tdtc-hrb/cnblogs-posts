@@ -1,7 +1,7 @@
 ---
 title: "web server"
 description: "使用Enc28j60模块"
-date: 2023-03-28T01:08:08+08:00
+date: 2026-07-07T01:08:08+08:00
 ---
 created date： 2021-03-10    
 modified date： 
@@ -36,7 +36,8 @@ INTN: 置空（不接）
 ## [Arduino Uno](https://content.arduino.cc/assets/UNO-TH_Rev3e_sch.pdf)
 *GND接线:  5V旁边的GND.
 
-供电: 必须使用USB接口.(使用电源口无法工作)
+**供电: 必须使用USB接口.**
+***使用 圆形 DC 接口 无法工作!***
 
 # 网络及PC驱动
 两种方式：

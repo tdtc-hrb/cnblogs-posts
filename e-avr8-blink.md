@@ -3,10 +3,10 @@ title: "arduino 开发环境"
 description: "arduino uno"
 date: 2021-03-06T05:08:08+08:00
 ---
-  使用跑马灯来验证.
-# Pre IDE
-- [Arduino CC(.zip文件)](https://www.arduino.cc/en/software)
-- [Atmel Studio 7](https://www.microchip.com/en-us/development-tools-tools-and-software/microchip-studio-for-avr-and-sam-devices)
+- [<s>Legacy IDE (1.8.19)- arduino</s>](https://www.arduino.cc/en/software)
+- [<s>Atmel Studio 7</s>](https://www.microchip.com/en-us/tools-resources/develop/microchip-studio)
+
+**使用新的 Arduino 2 - ide 已经可以查看函数原型**
 
 # 编码
 我们使用使用AS7是为了使用它的智能提示和方便查看函数原型.
