@@ -77,38 +77,32 @@ TABLE 1-2: ABBREVIATION DESCRIPTIONS
 
 *1: New MCU (PIC16F188/152 etc.) series add 12（47 in total） assembly instructions.
 
-## sing data memory and moving data
+## Data Movement
+- PIC16: Moving data between two general RAM locations requires routing through the working register (W), 
+often requiring manual bank switching via status bits (RP0, RP1).
+- PIC18: Includes the dedicated MOVFF instruction, 
+which can move data directly from any RAM/Special Function Register (SFR) location to any other RAM/SFR location in a single (two-word) command.
+
 |Instruction|Description|Affected Flags|Instruction Cycles|
 |-|-|-|-|
 |MOVF   f, d|f⇒W (if d=0), f⇒f (if d=1) <br>Moves the content of f to destination d.</br>|Z|1|
 |MOVWF  f   |W⇒f <br>Moves W to file register f.</br>|None|1|
 |MOVLW  k   |k⇒W <br>Copies the number k to W.</br>|None|1|
 
-### MOVF
-In general, f is assigned to W.
+### MOVF and MOVFF
+- pic16f
 ```
-MOVF    f, 0
-```
+    movf    STATUS, w
+    movwf   STATUS_TEMP
 
-The following are special cases:    
-- Test
+    movf    BSR, w
+    movwf   BSR_TEMP
 ```
-MOVF    f, 1
+- pic18f
 ```
- does not affect the content of f or W.    
-MOVF with a destination 1 (F), is generally used to check whether the content of the file register is zero or not.
-
-Equivalent Operation(s):
+    MOVFF   STATUS,STATUS_TEMP  ; DE STATUS Y DE BSR
+    MOVFF   BSR,BSR_TEMP        ; PARA RESTAURARLOS AL VALOR ANTES DE LA INTERRUPCION
 ```
-TSTF    f          ;Test File
-```
-
-- Zero
-```
-movf    buffer,F   ;Force Z bit
-```
-强制置零
-
 ## Math
 - Skip if Zero
 
