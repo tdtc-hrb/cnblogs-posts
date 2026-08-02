@@ -1,9 +1,10 @@
 ---
 title: "microchip code configurator - melody"
 description: "Get Started for MPLAB® X IDE Users New to Visual Studio Code (VS Code®)"
-date: 2026-07-18T10:08:08+08:00
+date: 2026-08-01T10:08:08+08:00
 ---
-- [MPLAB Extension Pack - VS Code](https://developerhelp.microchip.com/xwiki/bin/view/software-tools/ides/extensions/get-started/)
+- [MPLAB Extension Pack - microchip](https://developerhelp.microchip.com/xwiki/bin/view/software-tools/ides/extensions/get-started/)
+- C/C++ Extension Pack - MS
 - [MCC Melody](https://www.microchip.com/en-us/tools-resources/configure/mplab-code-configurator/melody)
 
 ### network Settings
@@ -104,6 +105,26 @@ click "Pins" Settings
 View -> Command Palette:
 ```
 MPLAB mcc  : launch
+```
+
+## Bare Metal Code
+- Bit Unions
+- Bit Masks
+- Bit Positions
+
+### datasheet
+You can view register names and positions in the data sheets; 
+
+however, you need to use the variable and constant names defined in the header file when coding.
+
+#### mask
+The MASK is defined in the register header file.
+
+**It is not in the data sheet.**
+
+#### header
+```
+/Microchip/MPLABX/<version num>/packs/Microchip/<product family>_DFP/<qfp version>/xc8/pic/include/proc/<register name>.h
 ```
 
 ## Ref
