@@ -14,21 +14,43 @@ Read the PORT for the bit status.
 You can read the LAT, but it always what you wrote, 
 it does not contain any "live " readings.
 
-### Tris x - tri-state
+### Data Direction Register(TRISx)
 TRISA, TRISB, and TRISC are data direction registers in PIC microcontrollers that 
 configure the individual pins of corresponding ports (PORTA, PORTB, and PORTC) as either digital inputs or outputs.
 
-Similar to LPC's FIODIR (Fast I/O Direction Register)
+- Similar to LPC's FIODIR (Fast I/O Direction Register)
 
 ### [Port x](https://forum.microchip.com/s/topic/a5C3l000000MPO4EAO/t327648?comment=P-2587932)
 **Make a habit of reading from the PORT register, and writing to the LAT register, and you will avoid problems.**
 
-#### Latch x
+***LATx and ANSELx were originally only available in high-end MCUs, such as the PIC24F and PIC32F.***
+
+***The new product line, starting with the 16F and 18F, already includes these two registers.***
+
+#### Output Data Latches(LATx)
 ```
 LATA, LATB, LATC, LATD, LATE
 ```
 Neither the PIC16F877A nor the classic PIC16F887 features a hardware LATB (Data Latch) register in its physical architecture; 
 instead, input and output operations rely directly on the PORTB and TRISB registers.
+
+#### Analog and Digital Port Pins(ANSELx)
+```
+ANSELA, ANSELB, ANSELC, ANSELD, ANSELE
+```
+The ANSELx (or AD1PCFG) register controls the operation of the analog port pins. 
+The port pinsthat are to function as analog inputs must have their corresponding ANSEL and TRISx bits set(or AD1PCFG cleared). 
+To use port pins for I/O functionality with digital modules such as Timers, UARTs, etc., 
+the corresponding ANSELx bit must be cleared (or the corresponding AD1PCFG bit must be set).
+The ANSELx register has a default value of 0xFFFF (or 0x0000 for AD1PCFG); 
+therefore, all pins that share analog functions are by default analog and not digital. 
+If the TRISx bit is cleared (output) while the ANSELx bit is set (or the AD1PCFG bit is cleared),
+the digital output level (VOH or VOL) is converted by an analog peripheral, such as the ADC module or the Comparator module.
+When the PORTx register is read, all pins configured as analog input channels are read as cleared (a low-level).
+Pins configured as digital inputs do not convert an analog input. Analog levels on any pin defined as 
+a digital input (including the ANx pins) can cause the input buffer to consume current that exceeds the device specifications.
+
+- Similar to LPC's PINSEL (Pin Selection Register)
 
 ### blinked - pic-as
 ```
@@ -88,3 +110,4 @@ END
 
 ## Ref
 - [porta, lata, trisa ?](https://forum.microchip.com/s/topic/a5C3l000000LyKqEAK/t223660?comment=P-1906772)
+- [Section 12. I/O Ports - PIC32F](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/ReferenceManuals/60001120F.pdf)
