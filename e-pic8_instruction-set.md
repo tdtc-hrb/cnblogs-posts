@@ -159,11 +159,5 @@ makes COUNTER=48. W remains the same. If the destination was W (or 0), W becomes
 
 
 # Ref
-- [Summary of Instructions](http://www.onlinepiccompiler.com/InstructionsENG.html#section=div0)
-- [Lecture 29 - Continue with PIC example programs: Interrupt](http://player.slideplayer.com/download/78/12900510/cNyMX-VU_CZjdfqY7w9taQ/1684229591/12900510.ppt)
-- ASCII code
-```
-&#124; - |
-&#96;  - `
-```
-![Dot printer ASCII](https://upload.wikimedia.org/wikipedia/commons/0/0f/Dot_printer_ASCII.png)
+- [Summary of Instructions](https://web.archive.org/web/20220523013104/http://www.onlinepiccompiler.com:80/InstructionsENG.html)
+- [8 Interrupts and Bits Example For PIC18 Devices](https://onlinedocs.microchip.com/oxy/GUID-205B1F42-0E06-45E1-8D34-E3D05C15710F-en-US-3/GUID-47CFD27E-31AA-4963-925A-18C2837313D2.html)
