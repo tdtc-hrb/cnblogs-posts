@@ -1,6 +1,6 @@
 ---
 title: "MPASM to MPLAB XC8 PIC Assembler - b"
-description: "Block and banksel"
+description: "bankmask and banksel"
 date: 2026-08-06T08:08:08+08:00
 ---
 |old|Alternate Products|
@@ -15,27 +15,19 @@ date: 2026-08-06T08:08:08+08:00
 [MPLAB X v5.40+](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide) and 
 [XC8 v2.20+](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers/downloads-documentation#XC8)
 
-### Define a Block Of Constants
-Do not use <b>cblock</b> or <b>equ</b> to define variable location names for relocatable code.
+### bankmask - macro
+It is recommended that you mask all addresses used by PIC file register instructions whose operand represents a bank offset.
 ```
-CBLOCK = accumulative equ
+#include <xc.inc>
+copy:
+  BANKSEL (src)              ;select the bank of src
+  movf     BANKMASK(src),w   ;move from src, masking the address
+  BANKSEL (dst)              ;select the bank of dst
+  movwf    BANKMASK(dst)     ;move to dst, masking the address
 ```
-- CBLOCK
-```
-cblock 0x20 ; name_1 will be assigned 20
-name_1, name_2 ; name_2, 21 and so on
-name_3, name_4 ; name_4 is assigned 23.
-endc
-```
-- EQU
-```
-    name_1    EQU 0x20
-    name_2    EQU 0x21
-    name_3    EQU 0x22
-    name_4    EQU 0x23
-```
+The BANKMASK() macro, can perform the mask using the correct values, based on the selected device.
 
-### banksel
+### banksel - Pseudo-instructions
 The file registers of the pic are held in banks, 
 some are shared across all banks and some program data can also be shared across all banks but this is obviously 
 wasteful of memory so it’s limited to select registers and shared data.
