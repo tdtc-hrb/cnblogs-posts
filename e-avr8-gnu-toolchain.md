@@ -37,6 +37,13 @@ Toolchains: Atmel AVR 8-bit (C language)
 
 ![](https://github.com/tdtc-hrb/cnblogs/raw/main/images/avr8-gcc_b_as7.png)
 
+#### Replaced - other way
+removed "avr8-gnu-toolchain" at:
+```
+C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\
+```
+copy new version avr8-gnu-toolchain.
+
 ### AS 7.0 is no longer maintained
 This means that new devices will not be able to appear in its device list.
 
