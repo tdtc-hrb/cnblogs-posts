@@ -1,18 +1,14 @@
 ---
-title: "web server"
-description: "使用Enc28j60模块"
-date: 2026-07-07T01:08:08+08:00
+title: "web server - Enc28j60"
+description: "支持 AS 7.0"
+date: 2026-08-18T06:08:08+08:00
 ---
-created date： 2021-03-10    
-modified date： 
-```
-2023-03-25
-```
+**UIP Ethernet工程 导入 到 Atmel Studio(Microchip Studio) 无法编译**
 
-- IDE    
-Arduino [V1.8.19](https://www.arduino.cc/en/software)
-- Library    
-[UIP Ethernet v2.x](https://github.com/UIPEthernet/UIPEthernet/releases)
+**Ethernet enc 没有这个问题**
+
+- Arduino [V1.8.19](https://www.arduino.cc/en/software)
+- [Ethernet enc v2.x](https://github.com/Networking-for-Arduino/EthernetENC)
 
 # 接线
 |Arduino Uno|Enc28j60|
@@ -95,157 +91,116 @@ Tools -> Arduino Uno(COM3)
 - Programmer    
 AVRISP mkII
 
-
-## 添加UIPEthernet库
-Download the ZIP file from github, and add it.
-
-### Arduin IDE v1.8.13
-> 项目-〉加载库-〉添加.zip库
-
-[v2.0.9](https://github.com/UIPEthernet/UIPEthernet/archive/refs/tags/v2.0.9.zip)
-
 ### Arduin IDE v1.8.19
-[v2.0.12](https://github.com/UIPEthernet/UIPEthernet/archive/refs/tags/v2.0.12.zip)
+[v2.0.5](https://github.com/Networking-for-Arduino/EthernetENC/archive/refs/tags/2.0.5.zip)
 ```
 Sketch -> Include Library
 Add .ZIP Library
 ```
 
 ## Code
-Ethernet_Demo_2.ino
+Ethernet_Demo_1.ino
 ```c
-/* Demo sketch for a simple web page
- *
- * Libs: UIPEthernet v2.0.9 ~ v2.0.12
- *       https://github.com/UIPEthernet/UIPEthernet/releases
- *
- * IDE: Arduino v1.8.13
- *      ~ 
- *      Arduino v1.8.19
- *
- * Ethernet: Enc28J60
- *
- */
-#include "Arduino.h"
-#include <UIPEthernet.h>
+#include <SPI.h>
+#include <EthernetENC.h>
 
-#ifndef BOARD_NAME
-  #define BOARD_NAME    "AVR Mega"
-#endif
+// Enter a MAC address and IP address for your controller below.
+// The IP address will be dependent on your local network:
+byte mac[] = {
+  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
+};
+IPAddress ip(192, 168, 1, 177);
 
-int reqCount = 0;                // number of requests received
+// Initialize the Ethernet server library
+// with the IP address and port you want to use
+// (port 80 is default for HTTP):
+EthernetServer server(80);
 
-// Let's create our Web Server on port 1000 (use port 80 for standard browsing)
-// This means your browser request MUST append :1000 the URL. Use port 80 if you
-// don't want to do this.
-EthernetServer server = EthernetServer(1000);
-
-// ------------------------------------------------------------------------------
-// SETUP     SETUP     SETUP     SETUP     SETUP     SETUP     SETUP     SETUP
-// ------------------------------------------------------------------------------
 void setup() {
-	// Serial Monitor aka Debugging Window
-	Serial.begin(9600);
+  // You can use Ethernet.init(pin) to configure the CS pin
+  //Ethernet.init(10);  // Most Arduino shields
+  //Ethernet.init(5);   // MKR ETH shield
+  //Ethernet.init(0);   // Teensy 2.0
+  //Ethernet.init(20);  // Teensy++ 2.0
+  //Ethernet.init(15);  // ESP8266 with Adafruit Featherwing Ethernet
+  //Ethernet.init(33);  // ESP32 with Adafruit Featherwing Ethernet
 
-	// You must assign a UNIQUE MAC address to the Ethernet module. Well, unique
-	// in your home or work setup anyway. Set it and don't keep changing is as
-	// your router is tracking it.
-	uint8_t mac[6] = { 0x93, 0x9c, 0x03, 0xde, 0x3b, 0x22 };
+  // Open serial communications and wait for port to open:
+  Serial.begin(9600);
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
+  Serial.println("Ethernet WebServer Example");
 
-	// Give your web server a STATIC address here so the browser can find it.
-	// From a Windows command prompt, try and "ping" it to see whether you can
-	// see it on the network.
-/*
-Microsoft Windows [Version 10.0.17763.4131]
-(c) 2018 Microsoft Corporation. All rights reserved.
+  // start the Ethernet connection and the server:
+  Ethernet.begin(mac, ip);
 
-C:\Users\tdtc>ping 192.168.2.86
+  // Check for Ethernet hardware present
+  if (Ethernet.hardwareStatus() == EthernetNoHardware) {
+    Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
+    while (true) {
+      delay(1); // do nothing, no point running without Ethernet hardware
+    }
+  }
+  if (Ethernet.linkStatus() == LinkOFF) {
+    Serial.println("Ethernet cable is not connected.");
+  }
 
-Pinging 192.168.2.86 with 32 bytes of data:
-Reply from 192.168.2.86: bytes=32 time=479ms TTL=128
-Reply from 192.168.2.86: bytes=32 time=2ms TTL=128
-Reply from 192.168.2.86: bytes=32 time=2ms TTL=128
-Reply from 192.168.2.86: bytes=32 time=2ms TTL=128
-
-Ping statistics for 192.168.2.86:
-    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
-Approximate round trip times in milli-seconds:
-    Minimum = 2ms, Maximum = 479ms, Average = 121ms
-*/
-	IPAddress myIP(192, 168, 2, 86);
-
-	// All information set up, we can begin
-	Ethernet.begin(mac, myIP);
-	server.begin();
-
-	// Just to prove that your server is running on your specified IP address
-	Serial.print("IP Address: ");
-	Serial.println(Ethernet.localIP());
+  // start the server
+  server.begin();
+  Serial.print("server is at ");
+  Serial.println(Ethernet.localIP());
 }
 
-void loop()
-{
+void loop() {
   // listen for incoming clients
   EthernetClient client = server.available();
-
-  if (client)
-  {
-    Serial.println(F("New client"));
+  if (client) {
+    Serial.println("new client");
     // an http request ends with a blank line
-    bool currentLineIsBlank = true;
-
-    while (client.connected())
-    {
-      if (client.available())
-      {
+    boolean currentLineIsBlank = true;
+    while (client.connected()) {
+      if (client.available()) {
         char c = client.read();
         Serial.write(c);
         // if you've gotten to the end of the line (received a newline
         // character) and the line is blank, the http request has ended,
         // so you can send a reply
-        if (c == '\n' && currentLineIsBlank)
-        {
-          Serial.println(F("Sending response"));
-
+        if (c == '\n' && currentLineIsBlank) {
           // send a standard http response header
-          // use \r\n instead of many println statements to speedup data send
-          client.print(
-            "HTTP/1.1 200 OK\r\n"
-            "Content-Type: text/html\r\n"
-            "Connection: close\r\n"  // the connection will be closed after completion of the response
-            "Refresh: 20\r\n"        // refresh the page automatically every 20 sec
-            "\r\n");
-          client.print("<!DOCTYPE HTML>\r\n");
-          client.print("<html>\r\n");
-          client.print(String("<h2>Hello World from ") + BOARD_NAME + "!</h2>\r\n");
-          client.print("Requests received: ");
-          client.print(++reqCount);
-          client.print("<br>\r\n");
-          client.print("Analog input A0: ");
-          client.print(analogRead(0));
-          client.print("<br>\r\n");
-          client.print("</html>\r\n");
+          client.println("HTTP/1.1 200 OK");
+          client.println("Content-Type: text/html");
+          client.println("Connection: close");  // the connection will be closed after completion of the response
+          client.println("Refresh: 5");  // refresh the page automatically every 5 sec
+          client.println();
+          client.println("<!DOCTYPE HTML>");
+          client.println("<html>");
+          // output the value of each analog input pin
+          for (int analogChannel = 0; analogChannel < 6; analogChannel++) {
+            int sensorReading = analogRead(analogChannel);
+            client.print("analog input ");
+            client.print(analogChannel);
+            client.print(" is ");
+            client.print(sensorReading);
+            client.println("<br />");
+          }
+          client.println("</html>");
           break;
         }
-
-        if (c == '\n')
-        {
+        if (c == '\n') {
           // you're starting a new line
           currentLineIsBlank = true;
-        }
-        else if (c != '\r')
-        {
+        } else if (c != '\r') {
           // you've gotten a character on the current line
           currentLineIsBlank = false;
         }
       }
     }
     // give the web browser time to receive the data
-    delay(10);
-
+    delay(1);
     // close the connection:
     client.stop();
-    Serial.println(F("Client disconnected"));
+    Serial.println("client disconnected");
   }
 }
 ```
@@ -265,8 +220,3 @@ void loop()
 > v111.0
 需要连接到路由器。
 ![Chrome v111.0](https://github.com/tdtc-hrb/cnblogs/raw/master/images/NanoEthENC28J60-chrome.png)
-
-
-# Ref
-- [setup part](https://github.com/RalphBacon/Arduino_Ethernet_ENC28J60_W5100)
-- [loop part](https://github.com/khoih-prog/EthernetWebServer/tree/master/examples/WebServer)
