@@ -55,11 +55,6 @@ Tools -> Options -> Web Browser
 
 Go to "Internet Explorer Options" settings.
 
-#### install
-When the new version of the device list appears, you can disable the network proxy settings.
-
-Then, proceed with the installation.
-
 ## example
 Atmel.AVR-Dx:
 ```
