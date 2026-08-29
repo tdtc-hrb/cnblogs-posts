@@ -54,6 +54,8 @@ First, select the version you want to install; then, click "Install" -> "Install
 Tools -> Options -> Web Browser
 
 Go to "Internet Explorer Options" settings.
+#### offline install
+Download from the [ATMEL Packs Repository](http://packs.download.atmel.com/).
 
 ## example
 Atmel.AVR-Dx:
