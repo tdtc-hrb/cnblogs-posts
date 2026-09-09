@@ -58,27 +58,25 @@ Go to "Internet Explorer Options" settings.
 Download from the [ATMEL Packs Repository](http://packs.download.atmel.com/).
 
 ## example
-Atmel.AVR-Dx:
+atmega4809:
 ```
-#define F_CPU 24000000UL
+#define F_CPU 3333333UL
 #include <avr/io.h>
-#include <avr/interrupt.h>
 #include <util/delay.h>
 
 int main(void)
 {
-    CCP = CCP_IOREG_gc; // Protected write
-    CLKCTRL.OSCHFCTRLA = CLKCTRL_FRQSEL_24M_gc; // Set clock to 24MHz
-    
-    PORTD.DIR = 0xFF;
+    PORTD.DIR |= PIN5_bm;
 
     while (1)
     {
         _delay_ms(500);
-        PORTD.OUT = 255;
+        PORTD.OUT |= PIN5_bm;
         _delay_ms(500);
-        PORTD.OUT = 0;
+        PORTD.OUT &= ~PIN5_bm;
     }
+
+    return 0;
 }
 ```
 The macro [F_CPU](https://onlinedocs.microchip.com/oxy/GUID-78362176-487F-41B9-95C7-B478A9A186EB-en-US-2/GUID-19D17420-19A7-43D6-9517-1FAD8F0A3143.html) 
@@ -86,3 +84,4 @@ specifies the CPU frequency to be considered by the delay macros.
 
 ## Ref
 - [example](https://github.com/swharden/AVR-projects/)
+- [Getting Started with GPIO Examples](https://github.com/microchip-pic-avr-examples/atmega4809-getting-started-with-gpio-mplab)
