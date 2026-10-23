@@ -300,3 +300,17 @@ instead of
 localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
 ```
 A: [use interactive](https://tdtc-hrb.github.io/cnblogs/post/ops_openssl)
+
+## CVE
+- [2026 - 01 and 02](https://www.php.net/archive/2026.php#2026-10-21-5)
+- [php2shell - 109618 and 109619](https://github.com/eness/php2shell-CVE-2026-109618-CVE-2026-109619-PoC)
+### cve 01 and 02 of 2026
+- upload progress is Off
+```
+session.upload_progress.enabled = Off
+session.upload_progress.enabled = 0
+```
+- memory limit is off
+```
+memory_limit=-1
+```
